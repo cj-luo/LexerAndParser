@@ -10,7 +10,6 @@ import java.util.Scanner;
  * @author wolberd
  * @see Token
  * @see Parser
- * @see ByteCodeInterpreter
  */
 public class Lexer {
 
@@ -28,12 +27,10 @@ public class Lexer {
      */
     public Lexer(String fileName) {
         getInput(fileName);
-
     }
 
     /**
      * Reads given file into the data member buffer
-     *
      * @param fileName name of file to parse
     */
     private void getInput(String fileName)  {
@@ -47,25 +44,49 @@ public class Lexer {
             Scanner scanner = new Scanner(System.in);
             buffer=scanner.nextLine();
         }
+    }
 
+    /**
+     * Return all the token in the file
+     * @return ArrayList of Token
+     */
+    public ArrayList<Token> getAllTokens(){
+        //TODO: replace your code here
+        return new ArrayList<>(); // don't forget to change the return statement
+    }
 
+    /**
+     * Stringify the tokens into String to pass Lexer Test
+     * @param tokens ArrayList<Token>
+     * @return String
+     */
+    public String stringifyListOfToken(ArrayList<Token> tokens){
+        StringBuilder sb = new StringBuilder();
 
+        for(Token token: tokens){
+            sb.append(token.getType()).append(" ").append(token.getValue()).append(System.lineSeparator());
+        }
+        return sb.toString();
     }
 
 
+    /**
+     * Before your run this starter code
+     * Select Run | Edit Configurations from the main menu.
+     * located to Program arguments add fileName ( for example test.txt)
+     * @param args args[0]
+     */
     public static void main(String[] args) {
-        String fileName="";
-        if (args.length==0) {
-            System.out.println("You must specify a file name");
-        } else {
-
-            fileName=args[0];
-        }
+        String fileName="test.txt";
+//        if (args.length==0) {
+//            System.out.println("You must specify a file name");
+//        } else {
+//
+//            fileName=args[0];
+//        }
         Lexer lexer = new Lexer(fileName);
 
         System.out.println(lexer.buffer);
-
-
     }
 }
 	
