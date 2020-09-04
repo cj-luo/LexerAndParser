@@ -1,7 +1,9 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class LexerTest {
@@ -10,7 +12,7 @@ public class LexerTest {
     public void test(){
         Lexer lexer = new Lexer("test.txt");
         ArrayList<Token> tokens = lexer.getAllTokens();
-        String actual = lexer.stringifyListOfToken(tokens);
+        String actual = stringifyListOfToken(tokens);
         System.out.println("actual: "+System.lineSeparator()+ actual);
 
         String expected ="ID xyz" + System.lineSeparator() +
@@ -34,7 +36,7 @@ public class LexerTest {
     public void testExpectingAssignOp(){
         Lexer lexer = new Lexer("testExpectingAssignOp.txt");
         ArrayList<Token> tokens = lexer.getAllTokens();
-        String actual = lexer.stringifyListOfToken(tokens);
+        String actual = stringifyListOfToken(tokens);
         System.out.println("actual: "+System.lineSeparator()+ actual);
 
         String expected ="ID x32" + System.lineSeparator() +
@@ -52,7 +54,7 @@ public class LexerTest {
     public void testExpectingIdOrInt2(){
         Lexer lexer = new Lexer("testExpectingIdOrInt2.txt");
         ArrayList<Token> tokens = lexer.getAllTokens();
-        String actual = lexer.stringifyListOfToken(tokens);
+        String actual = stringifyListOfToken(tokens);
         System.out.println("actual: "+System.lineSeparator()+ actual);
 
         String expected ="ID x" + System.lineSeparator() +
@@ -70,7 +72,7 @@ public class LexerTest {
     public void testMultiplePlus(){
         Lexer lexer = new Lexer("testMultiplePlus.txt");
         ArrayList<Token> tokens = lexer.getAllTokens();
-        String actual = lexer.stringifyListOfToken(tokens);
+        String actual = stringifyListOfToken(tokens);
         System.out.println("actual: "+System.lineSeparator()+ actual);
 
         String expected ="ID x32" + System.lineSeparator() +
@@ -96,7 +98,7 @@ public class LexerTest {
     public void testWhitespace(){
         Lexer lexer = new Lexer("testWhitespace.txt");
         ArrayList<Token> tokens = lexer.getAllTokens();
-        String actual = lexer.stringifyListOfToken(tokens);
+        String actual = stringifyListOfToken(tokens);
         System.out.println("actual: "+System.lineSeparator()+ actual);
 
         String expected ="ID x32" + System.lineSeparator() +
@@ -118,7 +120,7 @@ public class LexerTest {
     public void testExpectingId2(){
         Lexer lexer = new Lexer("testExpectingId2.txt");
         ArrayList<Token> tokens = lexer.getAllTokens();
-        String actual = lexer.stringifyListOfToken(tokens);
+        String actual = stringifyListOfToken(tokens);
         System.out.println("actual: "+System.lineSeparator()+ actual);
 
         String expected ="INT 32" + System.lineSeparator() +
@@ -128,5 +130,18 @@ public class LexerTest {
         System.out.println("expect: "+System.lineSeparator()+ expected);
         if (!expected.equals(actual)  && !expected.equals(actual.trim()))
             Assert.fail("The string returned by your program did not match any of strings that are considered correct representation of the list of token.");
+    }
+
+    /**
+     * Stringify the tokens into String to pass Lexer Test
+     * @param tokens ArrayList<Token>
+     * @return String
+     */
+    public String stringifyListOfToken(ArrayList<Token> tokens){
+        StringBuilder sb = new StringBuilder();
+        for(Token token: tokens){
+            sb.append(token.toString()).append(System.lineSeparator());
+        }
+        return sb.toString();
     }
 }

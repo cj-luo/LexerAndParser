@@ -55,19 +55,8 @@ public class Lexer {
         return new ArrayList<>(); // don't forget to change the return statement
     }
 
-    /**
-     * Stringify the tokens into String to pass Lexer Test
-     * @param tokens ArrayList<Token>
-     * @return String
-     */
-    public String stringifyListOfToken(ArrayList<Token> tokens){
-        StringBuilder sb = new StringBuilder();
 
-        for(Token token: tokens){
-            sb.append(token.getType()).append(" ").append(token.getValue()).append(System.lineSeparator());
-        }
-        return sb.toString();
-    }
+
 
 
     /**
@@ -77,13 +66,13 @@ public class Lexer {
      * @param args args[0]
      */
     public static void main(String[] args) {
-        String fileName="test.txt";
-//        if (args.length==0) {
-//            System.out.println("You must specify a file name");
-//        } else {
-//
-//            fileName=args[0];
-//        }
+        String fileName="";
+        if (args.length==0) {
+            System.out.println("You must specify a file name");
+        } else {
+
+            fileName=args[0];
+        }
         Lexer lexer = new Lexer(fileName);
 
         System.out.println(lexer.buffer);
